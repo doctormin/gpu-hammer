@@ -17,9 +17,11 @@
 
 int main(int argc, const char *argv[])
 {
-    // CUDACHECK(fp32_hammer(cudaStreamDefault, 80));
-    // CUDACHECK(l2_ld_hammer(cudaStreamDefault, 80));
-    CUDACHECK(gmem_ld_hammer(cudaStreamDefault, 80));
+    // CUDACHECK(fp32_hammer(cudaStreamDefault, 108));
+    // CUDACHECK(l2_ld_hammer(cudaStreamDefault, 108));
+    // CUDACHECK(gmem_ld_hammer(cudaStreamDefault, 108));
+    // CUDACHECK(fp_hammer(cudaStreamDefault, 108));
+    CUDACHECK(tensor_hammer(cudaStreamDefault, 108));
     CUDACHECK(cudaDeviceSynchronize());
 
     cudaDeviceReset();
