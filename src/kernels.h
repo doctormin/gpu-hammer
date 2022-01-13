@@ -8,5 +8,6 @@ extern "C" cudaError_t l2_ld_hammer(cudaStream_t s, int nblks);
 extern "C" cudaError_t gmem_ld_hammer(cudaStream_t s, int nblks);
 extern "C" cudaError_t fp_hammer(cudaStream_t s, int nblks);
 extern "C" cudaError_t tensor_hammer(cudaStream_t s, int nblks);
+extern "C" cudaError_t gmem_fp_hammer(cudaStream_t s, int nblks);
 
 #endif // KERNELS_H_
