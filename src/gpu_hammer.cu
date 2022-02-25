@@ -3,20 +3,14 @@
 #include "cuda_runtime.h"
 
 #include "kernels.h"
-
-#define CUDACHECK(cmd) do {                         \
-  cudaError_t err = cmd;                            \
-  if (err != cudaSuccess) {                         \
-    printf("CUDA failure %s:%d '%s'\n",             \
-        __FILE__,__LINE__,cudaGetErrorString(err)); \
-    exit(1);                                        \
-  }                                                 \
-} while(0)
-
+#include "common.h"
 
 
 int main(int argc, const char *argv[])
 {
+    int num_sm;
+    CUDACHECK(cudaDeviceGetAttribute(&num_sm, cudaDevAttrMultiProcessorCount, 0));
+
     // CUDACHECK(fp32_hammer(cudaStreamDefault, 108));
     // CUDACHECK(l2_ld_hammer(cudaStreamDefault, 108));
     // CUDACHECK(gmem_ld_hammer(cudaStreamDefault, 108));

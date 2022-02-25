@@ -2,7 +2,7 @@ CUDA_HOME	?= /usr/local/cuda
 
 NVCC		:= $(CUDA_HOME)/bin/nvcc
 NVFLAGS		:= -std=c++14 -g -O3 -Xcompiler -Wall
-NVARCH		:= -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80
+NVARCH		:= -gencode arch=compute_80,code=sm_80 -gencode arch=compute_80,code=compute_80 -gencode arch=compute_70,code=sm_70 -gencode arch=compute_70,code=compute_70
 
 .PHONY: all clean
 

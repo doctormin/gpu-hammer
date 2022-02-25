@@ -7,6 +7,7 @@ static __device__ float tensor_out;
 
 static __global__ void tensor_f16f16f16_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[3];
     __half2 *A = (__half2 *)&smem[0];
     A[0] = __float2half2_rn(0.01);
@@ -53,10 +54,12 @@ static __global__ void tensor_f16f16f16_hammer_kernel()
     if (C0[0] > 0.2) {
         tensor_out = C0[0] + C0[1] + C1[0] + C1[1];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 static __global__ void tensor_f16f16f32_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[3];
     __half2 *A = (__half2 *)&smem[0];
     A[0] = __float2half2_rn(0.01);
@@ -100,10 +103,12 @@ static __global__ void tensor_f16f16f32_hammer_kernel()
             C0[0] + C0[1] + C0[2] + C0[3] +
             C1[0] + C1[1] + C1[2] + C1[3];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 static __global__ void tensor_bf16bf16f32_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[3];
     __nv_bfloat162 *A = (__nv_bfloat162 *)&smem[0];
     A[0] = __float2bfloat162_rn(0.01);
@@ -147,10 +152,12 @@ static __global__ void tensor_bf16bf16f32_hammer_kernel()
             C0[0] + C0[1] + C0[2] + C0[3] +
             C1[0] + C1[1] + C1[2] + C1[3];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 static __global__ void tensor_tf32tf32f32_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[6];
     float *A = (float *)&smem[0];
     A[0] = nvcuda::wmma::__float_to_tf32(0.01);
@@ -209,10 +216,12 @@ static __global__ void tensor_tf32tf32f32_hammer_kernel()
             C1[0] + C1[1] + C1[2] + C1[3] +
             C2[0] + C2[1] + C2[2] + C2[3];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 static __global__ void tensor_f64f64f64_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[4];
     double *A = (double *)&smem[0];
     A[0] = 0.01;
@@ -253,10 +262,12 @@ static __global__ void tensor_f64f64f64_hammer_kernel()
     if (C0[0] > 0.2) {
         tensor_out = C0[0] + C0[1] + C1[0] + C1[1];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 static __global__ void tensor_s8s8s32_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[6];
     char *A = (char *)&smem[0];
     A[0] = 1;
@@ -333,10 +344,12 @@ static __global__ void tensor_s8s8s32_hammer_kernel()
             C1[0] + C1[1] + C1[2] + C1[3] +
             C2[0] + C2[1] + C2[2] + C2[3];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 static __global__ void tensor_s4s4s32_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[6];
     unsigned int *A = (unsigned int *)&smem[0];
     A[0] = 0xf1f1f1f1;
@@ -395,10 +408,12 @@ static __global__ void tensor_s4s4s32_hammer_kernel()
             C1[0] + C1[1] + C1[2] + C1[3] +
             C2[0] + C2[1] + C2[2] + C2[3];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 static __global__ void tensor_b1b1s32_hammer_kernel()
 {
+#if (__CUDA_ARCH__ >= 800)
     __shared__ unsigned int smem[6];
     unsigned int *A = (unsigned int *)&smem[0];
     A[0] = 0xaaaaaaaa;
@@ -457,6 +472,7 @@ static __global__ void tensor_b1b1s32_hammer_kernel()
             C1[0] + C1[1] + C1[2] + C1[3] +
             C2[0] + C2[1] + C2[2] + C2[3];
     }
+#endif // (__CUDA_ARCH__ >= 800)
 }
 
 extern "C" {
