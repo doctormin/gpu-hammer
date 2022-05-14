@@ -8,7 +8,7 @@ extern "C" cudaError_t l2_ld_hammer(cudaStream_t s, int nblks);
 extern "C" cudaError_t gmem_ld_hammer(cudaStream_t s, int nblks);
 extern "C" cudaError_t fp_hammer(cudaStream_t s, int nblks);
 extern "C" cudaError_t gmem_fp_hammer(cudaStream_t s, int nblks);
-extern "C" cudaError_t smem_hammer(cudaStream_t s, int nblks);
+extern "C" cudaError_t smem_ld_hammer(cudaStream_t s, int nblks);
 
 extern "C" cudaError_t tensor_f16f16f16_hammer(cudaStream_t s, int nblks);
 extern "C" cudaError_t tensor_f16f16f32_hammer(cudaStream_t s, int nblks);
