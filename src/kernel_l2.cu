@@ -1,8 +1,5 @@
 #include "cuda_runtime.h"
 
-// Should be multiple of 32
-// #define L2_CACHE_SIZE 98304 //96KB
-// #define L2_CACHE_SIZE 196608 // 192KB 
 // Should be multiple of 32 and power of 2
 #define CACHED_ARRAY_SIZE  65536   // 64KB
 #define BLOCK_SIZE     1024

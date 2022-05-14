@@ -60,9 +60,10 @@ int main(int argc, const char *argv[])
   // CUDACHECK(tensor_b1b1s32_hammer(cudaStreamDefault, 108));
   // CUDACHECK(fp32_hammer(cudaStreamDefault, 108));
   // CUDACHECK(cudaDeviceSetCacheConfig(cudaFuncCachePreferL1));
+  // CUDACHECK(l1_ld_hammer(cudaStreamDefault, 108));
   // CUDACHECK(l2_ld_hammer(cudaStreamDefault, 108));
   // CUDACHECK(gmem_ld_hammer(cudaStreamDefault, 108));
-  CUDACHECK(smem_ld_hammer(cudaStreamDefault, 108));
+  // CUDACHECK(smem_ld_hammer(cudaStreamDefault, 108));
   CUDACHECK(cudaDeviceSynchronize());
   auto endTime = std::chrono::system_clock::now().time_since_epoch().count();
   std::cout << "\t[" << FRED("GPU Hammer") << "] "

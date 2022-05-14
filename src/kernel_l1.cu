@@ -1,15 +1,13 @@
 #include "cuda_runtime.h"
 
-// Should be multiple of 32
-// #define L2_CACHE_SIZE 98304 //96KB
-// #define L2_CACHE_SIZE 196608 // 192KB 
 // Should be multiple of 32 and power of 2
-#define CACHED_ARRAY_SIZE  65536   // 64KB
+#define CACHED_ARRAY_SIZE  98304 //96KB
+// #define CACHED_ARRAY_SIZE  196608 // 192KB 
 #define BLOCK_SIZE     1024
 static __device__ char arr[CACHED_ARRAY_SIZE];
 
 // Referred to code in https://arxiv.org/pdf/1804.06826.pdf
-static __global__ void l2_ld_hammer_kernel()
+static __global__ void l1_ld_hammer_kernel()
 {
     constexpr int ntmo = BLOCK_SIZE - 1;
     constexpr int nd = CACHED_ARRAY_SIZE / 8;
@@ -37,11 +35,11 @@ static __global__ void l2_ld_hammer_kernel()
 
 extern "C" {
 
-cudaError_t l2_ld_hammer(cudaStream_t s, int nblks)
+cudaError_t l1_ld_hammer(cudaStream_t s, int nblks)
 {
     dim3 grid = dim3(nblks, 1, 1);
     dim3 block = dim3(BLOCK_SIZE, 1, 1);
-    return cudaLaunchKernel((void *)l2_ld_hammer_kernel, grid, block, 0, 0, s);
+    return cudaLaunchKernel((void *)l1_ld_hammer_kernel, grid, block, 0, 0, s);
 }
 
 } // extern "C"
