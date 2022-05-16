@@ -3,10 +3,9 @@
 // Should be multiple of 32 and power of 2
 #define CACHED_ARRAY_SIZE  98304 //96KB
 // #define CACHED_ARRAY_SIZE  196608 // 192KB 
-#define BLOCK_SIZE     1024
+#define BLOCK_SIZE     640
 static __device__ char arr[CACHED_ARRAY_SIZE];
 
-// Referred to code in https://arxiv.org/pdf/1804.06826.pdf
 static __global__ void l1_ld_hammer_kernel()
 {
     constexpr int ntmo = BLOCK_SIZE - 1;

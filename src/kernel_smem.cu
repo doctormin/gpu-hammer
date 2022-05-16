@@ -1,9 +1,8 @@
 #include "cuda_runtime.h"
 
 #define CACHED_ARRAY_SIZE  49152    // 48KB
-#define BLOCK_SIZE     128
+#define BLOCK_SIZE     640
 
-// Referred to code in https://arxiv.org/pdf/1804.06826.pdf
 static __global__ void smem_ld_hammer_kernel()
 {
     __shared__ char arr[CACHED_ARRAY_SIZE];
