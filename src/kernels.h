@@ -12,6 +12,7 @@ extern "C" cudaError_t gmem_ld_hammer(cudaStream_t s, int nblks);
 
 // FP Core
 extern "C" cudaError_t fp32_hammer(cudaStream_t s, int nblks);
+extern "C" cudaError_t fp64_hammer(cudaStream_t s, int nblks);
 
 // mixture
 extern "C" cudaError_t fp_hammer(cudaStream_t s, int nblks);
