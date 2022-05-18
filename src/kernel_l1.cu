@@ -12,7 +12,7 @@ static __global__ void l1_ld_hammer_kernel()
     constexpr int nd = CACHED_ARRAY_SIZE / 8;
     double x = 0;
     int tid = threadIdx.x;
-    for (int it = 0; it < 12000000; ++it) {
+    for (int it = 0; it < 6000000; ++it) {
         double *ptr = (double *)arr;
         for (int i = 0; i < nd; i += BLOCK_SIZE) {
             #pragma unroll
