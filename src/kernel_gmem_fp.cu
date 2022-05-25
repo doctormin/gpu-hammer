@@ -4,7 +4,7 @@
 // Should be multiple of 32
 #define ARRAY_SIZE      268435456   // 256M
 // Should be multiple of 32 and power of 2
-#define NUM_THREADS     1024
+#define BLOCK_SIZE     1024
 //
 #define UNROLL_DEPTH    128
 
@@ -17,8 +17,8 @@ static __global__ void gmem_fp_hammer_kernel()
 {
     int nd = ARRAY_SIZE >> 3;
     volatile double *ptr = (volatile double *)ld_arr;
-    int idx = threadIdx.x + blockIdx.x * NUM_THREADS;
-    int sz = NUM_THREADS * gridDim.x;
+    int idx = threadIdx.x + blockIdx.x * BLOCK_SIZE;
+    int sz = BLOCK_SIZE * gridDim.x;
     int usz = sz * UNROLL_DEPTH;
     double x = 0;
 
@@ -60,7 +60,7 @@ extern "C" {
 cudaError_t gmem_fp_hammer(cudaStream_t s, int nblks)
 {
     dim3 grid = dim3(nblks, 1, 1);
-    dim3 block = dim3(NUM_THREADS, 1, 1);
+    dim3 block = dim3(BLOCK_SIZE, 1, 1);
     return cudaLaunchKernel((void *)gmem_fp_hammer_kernel, grid, block, 0, 0, s);
 }
 
